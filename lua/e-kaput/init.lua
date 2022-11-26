@@ -81,7 +81,9 @@ ekaput.openFloatingWindow = function()
   end
 
   if float_open == 0 then
-    local lineDiagnostics = vim.lsp.diagnostic.get_line_diagnostics()
+    local lineDiagnostics = vim.diagnostic.get(0,{
+      lnum = vim.fn.getpos('.')[2] - 1
+    })
 
     local hasDiagnostics = not utils.tableIsEmpty(lineDiagnostics)
 
